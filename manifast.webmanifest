@@ -1,0 +1,20 @@
+
+{
+  "name": "JUUMAO Chat",
+  "short_name": "JUUMAO",
+  "description": "Aplikasi pesan JUUMAO Chat",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
