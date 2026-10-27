@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b0d12">
+  <meta name="description" content="JUUMAO Chat, aplikasi pesan pribadi yang simpel dan modern.">
+  <title>JUUMAO Chat</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark">J<span>.</span></div>
+      <div class="brand-copy"><strong>JUUMAO <span>CHAT</span></strong><small>private conversations</small></div>
+      <button id="installBtn" class="icon-btn hidden" aria-label="Install aplikasi" title="Install aplikasi">⇩</button>
+      <button id="signOutBtn" class="icon-btn hidden" aria-label="Keluar" title="Keluar">↗</button>
+    </header>
+
+    <main>
+      <section id="authView" class="auth-view">
+        <div class="hero-orb"></div>
+        <p class="eyebrow">YOUR SPACE. YOUR PEOPLE.</p>
+        <h1>Obrolanmu,<br><span>ruangmu sendiri.</span></h1>
+        <p class="muted intro">Masuk menggunakan nomor telepon. Kode verifikasi dikirim melalui SMS.</p>
+        <div class="panel auth-panel">
+          <label for="phoneInput">Nomor telepon</label>
+          <input id="phoneInput" type="tel" inputmode="tel" autocomplete="tel" placeholder="+6281234567890">
+          <p class="hint">Gunakan format internasional, misalnya +62 diikuti nomor tanpa angka 0 di depan.</p>
+          <div id="recaptcha-container"></div>
+          <button id="sendCodeBtn" class="primary-btn">Kirim kode verifikasi <span>→</span></button>
+          <div id="codeArea" class="hidden">
+            <label for="codeInput">Kode SMS</label>
+            <input id="codeInput" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="Masukkan 6 digit kode">
+            <button id="verifyCodeBtn" class="primary-btn">Verifikasi & masuk <span>→</span></button>
+          </div>
+          <p id="authStatus" class="status" role="status"></p>
+        </div>
+        <p class="footnote">Jangan bagikan kode verifikasi kepada siapa pun.</p>
+      </section>
+
+      <section id="profileSetupView" class="auth-view hidden">
+        <p class="eyebrow">ONE LAST THING</p>
+        <h1>Buat identitas<br><span>JUUMAO-mu.</span></h1>
+        <div class="panel auth-panel">
+          <label for="usernameInput">Username</label>
+          <input id="usernameInput" maxlength="24" autocomplete="nickname" placeholder="contoh: jumao_01">
+          <label for="displayNameInput">Nama tampilan</label>
+          <input id="displayNameInput" maxlength="40" placeholder="Nama yang dilihat teman">
+          <button id="saveProfileBtn" class="primary-btn">Simpan profil <span>→</span></button>
+          <p id="profileStatus" class="status" role="status"></p>
+        </div>
+      </section>
+
+      <section id="chatView" class="chat-layout hidden">
+        <aside class="sidebar">
+          <div class="section-heading"><div><p class="eyebrow">MESSAGES</p><h2>Pesan</h2></div><span id="connectionDot" class="connection-dot" title="Status koneksi"></span></div>
+          <div class="search-wrap"><span>⌕</span><input id="userSearchInput" placeholder="Cari username..." autocomplete="off"></div>
+          <div id="searchResults" class="search-results hidden"></div>
+          <div class="list-label">TERBARU</div>
+          <div id="chatList" class="chat-list"><div class="empty-state">Belum ada percakapan.<br>Cari username teman untuk memulai.</div></div>
+          <div class="profile-strip"><div class="avatar self-avatar" id="selfAvatar">J</div><div class="profile-meta"><strong id="selfName">Pengguna</strong><small id="selfHandle">@username</small></div><button id="editProfileBtn" class="tiny-btn" title="Edit profil">•••</button></div>
+        </aside>
+        <section class="conversation">
+          <div id="welcomePane" class="welcome-pane">
+            <div class="welcome-icon">J<span>.</span></div>
+            <h2>Mulai percakapan.</h2>
+            <p>Pilih chat di samping atau cari username teman.</p>
+            <div class="privacy-note"><span>◆</span> Pesan hanya dapat dibaca oleh anggota percakapan sesuai aturan database.</div>
+          </div>
+          <div id="activeChatPane" class="active-chat hidden">
+            <div class="conversation-head">
+              <button id="backToListBtn" class="icon-btn mobile-only" aria-label="Kembali">←</button>
+              <div class="avatar" id="peerAvatar">J</div>
+              <div class="peer-meta"><strong id="peerName">Nama teman</strong><small id="peerHandle">@username</small></div>
+              <span class="secure-label">● LIVE</span>
+            </div>
+            <div id="messages" class="messages"><div class="empty-state">Memuat pesan…</div></div>
+            <form id="messageForm" class="composer">
+              <input id="messageInput" maxlength="4000" autocomplete="off" placeholder="Tulis pesan..." aria-label="Tulis pesan">
+              <button class="send-btn" type="submit" aria-label="Kirim pesan">↑</button>
+            </form>
+            <p class="composer-note">Jangan kirim kata sandi, kode OTP, atau informasi sensitif.</p>
+          </div>
+        </section>
+      </section>
+    </main>
+    <div id="toast" class="toast" role="status"></div>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
